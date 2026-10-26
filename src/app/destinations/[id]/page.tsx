@@ -28,6 +28,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import EditDestinationDialog from "@/components/EditDestinationDialog";
+import DeleteDestinationDialog from "@/components/DeleteDestinationDialog";
 
 type Destination = {
   _id: string;
@@ -97,12 +98,8 @@ export default async function DestinationDetailsPage({
 
             <EditDestinationDialog destination={destination}></EditDestinationDialog>
 
-            <Link
-              href="/destinations"
-              className="border border-red-300 px-4 py-2 text-xs text-red-500 hover:bg-red-50"
-            >
-              ▤ Delete
-            </Link>
+            <DeleteDestinationDialog id={id}></DeleteDestinationDialog>
+            
           </div>
         </div>
 
