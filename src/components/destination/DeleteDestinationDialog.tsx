@@ -13,11 +13,11 @@ import {
 
 
 import React from 'react';
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Pencil } from "lucide-react";
 import { redirect } from "next/navigation";
 
-const DeleteDestinationDialog = ({id}) => {
+const DeleteDestinationDialog = ({id}: {id: string}) => {
     const handleDeleteDestination = async ()=>{
       const res = await fetch(`http://localhost:8000/destination/${id}`, {
         method: "DELETE",

@@ -27,8 +27,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import EditDestinationDialog from "@/components/EditDestinationDialog";
-import DeleteDestinationDialog from "@/components/DeleteDestinationDialog";
+import EditDestinationDialog from "@/components/destination/EditDestinationDialog";
+import DeleteDestinationDialog from "@/components/destination/DeleteDestinationDialog";
 
 type Destination = {
   _id: string;

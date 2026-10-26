@@ -16,7 +16,7 @@
 
 import { Suspense } from "react";
 
-import { DestinationsGrid } from "@/components/destination-grid";
+import { DestinationsGrid } from "@/components/destination/DestinationGrid";
 import type { IDestination } from "@/lib/destination";
 
 async function Destinations() {
