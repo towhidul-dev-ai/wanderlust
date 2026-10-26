@@ -27,6 +27,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import EditDestinationDialog from "@/components/EditDestinationDialog";
 
 type Destination = {
   _id: string;
@@ -87,18 +88,20 @@ export default async function DestinationDetailsPage({
           </Link>
 
           <div className="flex gap-3">
-            <Link
+            {/* <Link
               href={`/destinations/${id}/edit`}
               className="border px-4 py-2 text-xs hover:bg-gray-50"
             >
               ✎ Edit
-            </Link>
+            </Link> */}
+
+            <EditDestinationDialog destination={destination}></EditDestinationDialog>
 
             <Link
               href="/destinations"
               className="border border-red-300 px-4 py-2 text-xs text-red-500 hover:bg-red-50"
             >
-              ▤ Cancel
+              ▤ Delete
             </Link>
           </div>
         </div>
