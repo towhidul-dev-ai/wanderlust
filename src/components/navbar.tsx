@@ -13,7 +13,7 @@ const navLinks = [
 
 const accountLinks = [
   { label: "Login", href: "/login" },
-  { label: "Sign Up", href: "/sign-up" },
+  { label: "Sign Up", href: "/signup" },
 ];
 
 export function Navbar() {
