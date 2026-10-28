@@ -1,13 +1,25 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { UserRound } from "lucide-react";
 import { cn } from "cn";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Button } from "./ui/button";
 
 const navLinks = [
   { label: "Home", href: "/", active: true },
   { label: "Destinations", href: "/destinations" },
-  { label: "Add-Destination", href: "/add-destination" },
-  { label: "My Bookings", href: "/bookings" },
+  { label: "Add Destination", href: "/add-destination" },
+  { label: "My Bookings", href: "/my-bookings" },
   { label: "Admin", href: "/admin" },
 ];
 
@@ -17,6 +29,15 @@ const accountLinks = [
 ];
 
 export function Navbar() {
+  const {data: session} = authClient.useSession()
+
+  const user = session?.user;
+
+  const handleSignOut = () =>{
+    authClient.signOut();
+  }
+
+  // console.log(user)
   return (
     <header className="relative z-10 bg-white">
       <div className="flex h-14 items-center justify-between px-6">
@@ -61,7 +82,23 @@ export function Navbar() {
             <UserRound className="size-3.5" />
             Profile
           </Link>
-          {accountLinks.map((link) => (
+          
+         {
+          user ? <Popover>
+  <PopoverTrigger render={<Avatar><AvatarImage referrerPolicy="no-referrer" src={user?.image as string} />
+  <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
+</Avatar>}>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverHeader>
+      <PopoverTitle>{user?.name}</PopoverTitle>
+      <PopoverDescription><p>{user?.email}</p>
+      <Button onClick={handleSignOut} variant={'destructive'}>Signout</Button>
+      </PopoverDescription>
+
+    </PopoverHeader>
+  </PopoverContent>
+</Popover> : <>  {accountLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
@@ -70,6 +107,11 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          </>
+         }
+  
+
+        
         </nav>
       </div>
     </header>
