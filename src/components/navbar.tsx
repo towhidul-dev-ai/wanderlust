@@ -153,7 +153,7 @@ const navLinks = [
   { label: "Destinations", href: "/destinations", icon: MapPin },
   { label: "Add Destination", href: "/add-destination" },
   { label: "My Bookings", href: "/my-bookings", icon: CalendarDays },
-  // { label: "Admin", href: "/admin", icon: ShieldCheck },
+  // { label: "Adminnn", href: "/admin", icon: ShieldCheck },
 ];
 
 export function Navbar() {
