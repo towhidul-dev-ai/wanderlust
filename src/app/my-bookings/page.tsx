@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import BookingHistoryCard, {
   type Booking,
 } from "@/components/booking/BookingHistoryCard";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 export default async function MyBookingsPage() {
   const session = await auth.api.getSession({
@@ -10,7 +11,7 @@ export default async function MyBookingsPage() {
   });
 
   const user = session?.user;
-
+  const token = await getTokenFromClient();
   if (!user?.email) {
     return (
       <main className="mx-auto max-w-6xl px-5 py-10">
@@ -23,8 +24,12 @@ export default async function MyBookingsPage() {
   }
 
   const res = await fetch(
-    `http://localhost:8000/my-bookings/${encodeURIComponent(user.email)}`,
-    { cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_API_URL}/my-bookings/${encodeURIComponent(user.email)}`,
+    { cache: "no-store",
+      headers: {
+        authorization: `Bearer${token}`
+      }
+     }
   );
 
   if (!res.ok) {
