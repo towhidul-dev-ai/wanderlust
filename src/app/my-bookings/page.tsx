@@ -27,7 +27,7 @@ export default async function MyBookingsPage() {
     `${process.env.NEXT_PUBLIC_API_URL}/my-bookings/${encodeURIComponent(user.email)}`,
     { cache: "no-store",
       headers: {
-        authorization: `Bearer${token}`
+        authorization: `Bearer ${token}`
       }
      }
   );
