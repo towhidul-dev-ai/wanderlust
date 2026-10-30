@@ -113,7 +113,7 @@ export default async function MyBookingsPage() {
       <main className="mx-auto max-w-6xl px-5 py-10">
         <h1 className="text-3xl font-semibold">My Bookings</h1>
         <p className="mt-3 text-red-500">
-          Authentication token not found. Please sign in again.
+          Authentication token is not found. Please sign in again.
         </p>
       </main>
     );
